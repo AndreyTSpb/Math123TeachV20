@@ -42,18 +42,18 @@ class RequestTask extends AsyncTask<String, String, String> {
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             //передаем параметры из наших текстбоксов
             //лоигн
-            nameValuePairs.add(new BasicNameValuePair("login", login.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("login", login));
             //пароль
-            nameValuePairs.add(new BasicNameValuePair("pass", pass.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("pass", pass));
             //собераем их вместе и посылаем на сервер
             postMethod.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             //получаем ответ от сервера
             String response = hc.execute(postMethod, res);
             //посылаем на вторую активность полученные параметры
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            //Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             //то что куда мы будем передавать и что, putExtra(куда, что);
-            intent.putExtra(SecondActivity.JsonURL, response);
-            startActivity(intent);
+            //intent.putExtra(SecondActivity.JsonURL, response);
+            //startActivity(intent);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (ClientProtocolException e) {
@@ -74,7 +74,7 @@ class RequestTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
 
-        dialog = new ProgressDialog(MainActivity.this);
+        //dialog = new ProgressDialog(MainActivity.this);
         dialog.setMessage("Загружаюсь...");
         dialog.setIndeterminate(true);
         dialog.setCancelable(true);
